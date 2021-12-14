@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import {MemoryRouter} from 'react-router-dom';
+import App from 'app/App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <MemoryRouter>
+        <App/>
+    </MemoryRouter>,
+    document.getElementById('root')
 );
