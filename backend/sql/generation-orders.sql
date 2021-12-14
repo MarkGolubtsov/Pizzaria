@@ -1,0 +1,2 @@
+INSERT INTO "public"."order" ("user_id", "comment", "date", "isClosed", "amount") VALUES (2, 'Without pepper', '2021-11-23', true, 30.40);
+INSERT INTO "public"."order" ("user_id", "comment", "date", "isClosed", "amount") VALUES (2, '', '2021-11-24', true, 40.40);
