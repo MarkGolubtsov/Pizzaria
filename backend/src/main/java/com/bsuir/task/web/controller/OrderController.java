@@ -2,6 +2,7 @@ package com.bsuir.task.web.controller;
 
 import com.bsuir.task.serivice.OrderService;
 import com.bsuir.task.serivice.dto.OrderDTO;
+import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,7 +24,7 @@ public class OrderController {
 
 //    @PreAuthorize("hasAnyRole('VIEWER','ADMIN')")
     @GetMapping
-    public Page<OrderDTO> read(@Valid SearchParameters paramsSearch) {
+    public Page<OrderDTO> read(@Valid PizzaSearchParameters paramsSearch) {
         return service.readAll(paramsSearch);
     }
 

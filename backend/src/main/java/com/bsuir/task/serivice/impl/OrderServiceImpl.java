@@ -6,6 +6,7 @@ import com.bsuir.task.repository.specification.OrderSpecificationFactory;
 import com.bsuir.task.serivice.OrderService;
 import com.bsuir.task.serivice.converter.OrderConverter;
 import com.bsuir.task.serivice.dto.OrderDTO;
+import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,6 +35,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<OrderDTO> readAll(SearchParameters parameters) {
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public Page<OrderDTO> readAll(PizzaSearchParameters parameters) {
         Pageable paging = PageRequest.of(parameters.getPage(), parameters.getPageSize(), Sort.by("id"));
         Specification<Order> specification = builtSpecification(parameters);
         Page<Order> pagedResult = repository.findAll(specification, paging);
