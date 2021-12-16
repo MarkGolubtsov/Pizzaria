@@ -2,6 +2,7 @@ package com.bsuir.task.web.controller;
 
 import com.bsuir.task.serivice.PizzaService;
 import com.bsuir.task.serivice.dto.PizzaDTO;
+import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class PizzaController {
 
 //    @PreAuthorize("hasAnyRole('VIEWER','ADMIN')")
     @GetMapping
-    public Page<PizzaDTO> read(@Valid SearchParameters paramsSearch) {
+    public Page<PizzaDTO> read(@Valid PizzaSearchParameters paramsSearch) {
         return service.readAll(paramsSearch);
     }
 

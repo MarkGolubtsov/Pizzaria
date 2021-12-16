@@ -8,6 +8,7 @@ import com.bsuir.task.serivice.PizzaService;
 import com.bsuir.task.serivice.converter.OrderConverter;
 import com.bsuir.task.serivice.converter.PizzaConverter;
 import com.bsuir.task.serivice.dto.PizzaDTO;
+import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -36,7 +38,13 @@ public class PizzaServiceImpl implements PizzaService {
 
     @Override
     public Page<PizzaDTO> readAll(SearchParameters parameters) {
-        Pageable paging = PageRequest.of(parameters.getPage(), parameters.getPageSize(), Sort.by("id"));
+       throw new RuntimeException("not implemented");
+    }
+
+    @Override
+    public Page<PizzaDTO> readAll(PizzaSearchParameters parameters) {
+        Sort priceSort = builtSort(parameters);
+        Pageable paging = PageRequest.of(parameters.getPage(), parameters.getPageSize(), priceSort);
         Specification<Pizza> specification = builtSpecification(parameters);
         Page<Pizza> pagedResult = repository.findAll(specification, paging);
         return pagedResult.map(PizzaConverter::toDTO);
@@ -63,15 +71,25 @@ public class PizzaServiceImpl implements PizzaService {
         return PizzaConverter.toDTO(updated);
     }
 
-    private Specification<Pizza> builtSpecification(SearchParameters parameters) {
-        String text = parameters.getText();
+    private Sort builtSort(PizzaSearchParameters parameters) {
+        Sort sort;
+        if (Objects.equals(parameters.getSortType(), "asc")) {
+            sort = Sort.by(parameters.getSortProperty()).ascending();
+        } else {
+            sort = Sort.by(parameters.getSortProperty()).descending();
+        }
+
+        return sort;
+    }
+
+    private Specification<Pizza> builtSpecification(PizzaSearchParameters parameters) {
         Specification<Pizza> specification = (root, query, criteriaBuilder) -> criteriaBuilder.isNotNull(root.get(
-                "id"
+            "id"
         ));
 
-        if (!StringUtils.isEmpty(text)) {
-            specification = specification.and(PizzaSpecificationFactory.getPizzaByLikeName(text)
-                    .or(PizzaSpecificationFactory.getPizzaByLikeDescription(text)));
+        if (!StringUtils.isEmpty(parameters.getText())) {
+            specification = specification.and(PizzaSpecificationFactory.getPizzaByLikeName(parameters.getText())
+                    .or(PizzaSpecificationFactory.getPizzaByLikeDescription(parameters.getText())));
         }
         return specification;
     }

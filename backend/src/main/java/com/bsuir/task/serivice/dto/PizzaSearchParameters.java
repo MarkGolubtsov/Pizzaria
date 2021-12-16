@@ -1,35 +1,36 @@
 package com.bsuir.task.serivice.dto;
 
-import java.time.LocalDateTime;
-
 public class PizzaSearchParameters extends SearchParameters {
-    boolean checkedPizza = false;
+    String text;
+    String sortProperty;
+    String sortType;
 
-    LocalDateTime dateStart = LocalDateTime.now();
-
-    LocalDateTime dateEnd = LocalDateTime.now();
-
-    public boolean isCheckedPizza() {
-        return checkedPizza;
+    @Override
+    public String getText() {
+        return text;
     }
 
-    public LocalDateTime getDateStart() {
-        return dateStart;
+    @Override
+    public PizzaSearchParameters setText(String text) {
+        this.text = text;
+        return this;
     }
 
-    public void setDateStart(LocalDateTime dateStart) {
-        this.dateStart = dateStart;
+    public String getSortProperty() {
+        return sortProperty;
     }
 
-    public LocalDateTime getDateEnd() {
-        return dateEnd;
+    public PizzaSearchParameters setSortProperty(String sortProperty) {
+        this.sortProperty = sortProperty;
+        return this;
     }
 
-    public void setDateEnd(LocalDateTime dateEnd) {
-        this.dateEnd = dateEnd;
+    public String getSortType() {
+        return sortType;
     }
 
-    public void setCheckedPizza(boolean checkedPizza) {
-        this.checkedPizza = checkedPizza;
+    public PizzaSearchParameters setSortType(String sortType) {
+        this.sortType = sortType;
+        return this;
     }
 }

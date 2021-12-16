@@ -12,7 +12,6 @@ public class PizzaSpecificationFactory {
         return getPizzaByLikeStringField("name", name);
     }
 
-
     public static Specification<Pizza> getPizzaByLikeDescription(String name) {
         return getPizzaByLikeStringField("description", name);
     }
