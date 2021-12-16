@@ -1,3 +1,7 @@
+## Before start
+
+Please, overwrite variables in src/app/constants.
+
 ## Available Scripts
 
 In the project directory, you can run:
