@@ -3,7 +3,7 @@ import {Button, Form, Input} from 'antd';
 import AppForm from 'app/components/AppForm';
 import 'app/logic/login/LoginPage.css';
 import useAuth from 'app/useAuth';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 
 export default function LoginPage() {
 
@@ -11,8 +11,15 @@ export default function LoginPage() {
         login: '',
         password: ''
     }
+
     const {login: loginInToApp} = useAuth();
     const navigate = useNavigate();
+    const auth = useAuth();
+
+    //todo refactoring!!!!!!!
+    if (auth.token) {
+        return <Navigate to={'/pizza-orders'}/>
+    }
 
     return (
         <div className='login-page'>
