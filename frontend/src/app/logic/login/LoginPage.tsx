@@ -1,7 +1,9 @@
 import React from 'react';
 import {Button, Form, Input} from 'antd';
 import AppForm from 'app/components/AppForm';
-import 'app/logic/LoginPage.css';
+import 'app/logic/login/LoginPage.css';
+import useAuth from 'app/useAuth';
+import {useNavigate} from 'react-router-dom';
 
 export default function LoginPage() {
 
@@ -9,6 +11,8 @@ export default function LoginPage() {
         login: '',
         password: ''
     }
+    const {login: loginInToApp} = useAuth();
+    const navigate = useNavigate();
 
     return (
         <div className='login-page'>
@@ -31,6 +35,9 @@ export default function LoginPage() {
     )
 
     function handleSubmit({login, password}: { login: string, password: string }) {
-        alert(`${login} ${password}`)
+        loginInToApp(login, password).then(() => {
+                navigate('/pizza-orders');
+            }
+        );
     }
 }
