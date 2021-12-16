@@ -6,6 +6,7 @@ import com.bsuir.task.repository.specification.OrderSpecificationFactory;
 import com.bsuir.task.serivice.OrderService;
 import com.bsuir.task.serivice.converter.OrderConverter;
 import com.bsuir.task.serivice.dto.OrderDTO;
+import com.bsuir.task.serivice.dto.OrderSearchParameters;
 import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Page<OrderDTO> readAll(PizzaSearchParameters parameters) {
+    public Page<OrderDTO> readAll(OrderSearchParameters parameters) {
         Pageable paging = PageRequest.of(parameters.getPage(), parameters.getPageSize(), Sort.by("id"));
         Specification<Order> specification = builtSpecification(parameters);
         Page<Order> pagedResult = repository.findAll(specification, paging);
@@ -67,15 +68,18 @@ public class OrderServiceImpl implements OrderService {
         return OrderConverter.toDTO(updated);
     }
 
-    private Specification<Order> builtSpecification(SearchParameters parameters) {
-        String text = parameters.getText();
+    private Specification<Order> builtSpecification(OrderSearchParameters parameters) {
         Specification<Order> specification = (root, query, criteriaBuilder) -> criteriaBuilder.isNotNull(root.get(
-                "id"
+            "id"
         ));
 
-//        if (!StringUtils.isEmpty(text)) {
-//            specification = specification.and(OrderSpecificationFactory.getOrderByStatus(text));
-//        }
+        if (parameters.isClosed()) {
+            specification = specification.and(OrderSpecificationFactory.getOrderByStatus(parameters.isClosed()));
+        } else if (parameters.getDateStart() != null && parameters.getDateEnd() != null) {
+            specification = specification.and(OrderSpecificationFactory.getOrderByTimeRange(
+                    parameters.getDateStart(), parameters.getDateEnd()
+            ));
+        }
         return specification;
     }
 }
