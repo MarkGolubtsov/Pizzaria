@@ -75,11 +75,14 @@ public class OrderServiceImpl implements OrderService {
 
         if (parameters.isClosed()) {
             specification = specification.and(OrderSpecificationFactory.getOrderByStatus(parameters.isClosed()));
-        } else if (parameters.getDateStart() != null && parameters.getDateEnd() != null) {
+        }
+
+        if (parameters.getDateStart() != null && parameters.getDateEnd() != null) {
             specification = specification.and(OrderSpecificationFactory.getOrderByTimeRange(
                     parameters.getDateStart(), parameters.getDateEnd()
             ));
         }
+
         return specification;
     }
 }
