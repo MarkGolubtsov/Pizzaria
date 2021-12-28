@@ -9,6 +9,7 @@ import com.bsuir.task.serivice.dto.OrderDTO;
 import com.bsuir.task.serivice.dto.OrderSearchParameters;
 import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
+import com.bsuir.task.serivice.exception.NotFoundEntityException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,8 @@ import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
+    private final String NOT_FOUND_MESSAGE = "Not found order.";
 
     private final OrderRepository repository;
 
@@ -53,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
         if (optionalOrder.isPresent()) {
             return OrderConverter.toDTO(optionalOrder.get());
         } else {
-            throw new RuntimeException("not found");
+            throw new NotFoundEntityException(NOT_FOUND_MESSAGE);
         }
     }
 
@@ -70,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
 
     private Specification<Order> builtSpecification(OrderSearchParameters parameters) {
         Specification<Order> specification = (root, query, criteriaBuilder) -> criteriaBuilder.isNotNull(root.get(
-            "id"
+                "id"
         ));
 
         if (parameters.isClosed()) {
