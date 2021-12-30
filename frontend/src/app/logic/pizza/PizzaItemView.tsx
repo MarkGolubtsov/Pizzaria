@@ -8,7 +8,7 @@ const {Meta} = Card;
 
 export default function PizzaItemView({pizza}: { pizza: Pizza }) {
 
-    const cover = <img alt="example" src={img}/>;
+    const cover = <img alt={`${pizza.name}`} src={img}/>;
 
     return (
         <div className='pizza-item'>
