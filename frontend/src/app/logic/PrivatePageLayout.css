@@ -1,7 +1,25 @@
 
+.header-link {
+    color: #6666dc;
+    cursor: pointer;
+}
+
+.header-link-active {
+    color: red;
+}
+
+.pizza-orders-link {
+    margin-left: 10px;
+}
+
+.page-links {
+    display: flex;
+}
+
 .page-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     background: #dede09;
+
 }

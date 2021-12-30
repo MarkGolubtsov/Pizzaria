@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button, Form, Input} from 'antd';
 import AppForm from 'app/components/AppForm';
-import 'app/logic/login/LoginPage.css';
 import useAuth from 'app/useAuth';
 import {Navigate, useNavigate} from 'react-router-dom';
+import 'app/logic/login/LoginPage.css';
 
 export default function LoginPage() {
 
@@ -18,7 +18,7 @@ export default function LoginPage() {
 
     //todo refactoring!!!!!!!
     if (auth.token) {
-        return <Navigate to={'/pizza-orders'}/>
+        return <Navigate to={'/pizza/orders'}/>
     }
 
     return (
@@ -43,7 +43,7 @@ export default function LoginPage() {
 
     function handleSubmit({login, password}: { login: string, password: string }) {
         loginInToApp(login, password).then(() => {
-                navigate('/pizza-orders');
+                navigate('/pizza/orders');
             }
         );
     }
