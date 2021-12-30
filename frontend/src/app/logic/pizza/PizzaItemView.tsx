@@ -6,6 +6,7 @@ import 'app/logic/pizza/PizzaItemView.css';
 
 const {Meta} = Card;
 
+//todo add hide text when description is too long.
 export default function PizzaItemView({pizza}: { pizza: Pizza }) {
 
     const cover = <img alt={`${pizza.name}`} src={img}/>;
@@ -17,7 +18,8 @@ export default function PizzaItemView({pizza}: { pizza: Pizza }) {
                 style={{width: 240}}
                 cover={cover}
             >
-                <Meta title={<PizzaItemTitle name={pizza.name} price={pizza.price}/>} description={pizza.description}/>
+                <Meta title={<PizzaItemTitle name={pizza.name} price={pizza.price}/>}
+                      description={<PizzaItemDescription pizza={pizza}/>}/>
             </Card>
         </div>
     )
@@ -28,6 +30,19 @@ function PizzaItemTitle({name, price}: { name: string, price: number }) {
         <div className='pizza-item-header'>
             <span>{name}</span>
             <PizzaPrice price={price}/>
+        </div>
+    )
+}
+
+function PizzaItemDescription({pizza}: { pizza: Pizza }) {
+    return (
+        <div className='pizza-item-description'>
+            <div className='pizza-item-description-weight'>
+                <span className='pizza-item-description-weight-title'>Weight:</span> {pizza.weight}
+            </div>
+            <div className='pizza-item-description-description'>
+                {pizza.description}
+            </div>
         </div>
     )
 }

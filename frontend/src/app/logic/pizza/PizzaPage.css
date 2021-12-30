@@ -6,6 +6,16 @@
     padding: 20px 0;
 }
 
-.pizza-item:not(:last-child) {
-    margin-bottom: 20px;
+.pizza-list {
+    width: 100%;
+    padding: 0 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
+
+.pizza-item {
+    margin-bottom: 10px;
+}
+
