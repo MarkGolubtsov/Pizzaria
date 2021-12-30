@@ -5,7 +5,7 @@ import HttpClient from 'app/api/HttpClient';
 const PIZZA_URL = '/pizza';
 
 export class PizzaService {
-    static getAllPizza() {
-        return HttpClient.executeGetRequest<ServerListResponse<Pizza>>(PIZZA_URL);
+    static getAllPizza(text: string) {
+        return HttpClient.executeGetRequest<ServerListResponse<Pizza>>(`${PIZZA_URL}?text=${text}`);
     }
 }
