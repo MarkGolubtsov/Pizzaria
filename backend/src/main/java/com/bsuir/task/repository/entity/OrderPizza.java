@@ -12,16 +12,17 @@ public class OrderPizza {
     @Id
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    public void setId(Long id) {
+    public OrderPizza setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Long getId() {
