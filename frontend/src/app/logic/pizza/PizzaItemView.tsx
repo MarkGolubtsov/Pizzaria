@@ -3,6 +3,7 @@ import {Card} from 'antd';
 import img from 'app/assets/pizza.png';
 import PizzaPrice from 'app/components/PizzaPrice';
 import 'app/logic/pizza/PizzaItemView.css';
+import AddToCartPizzaComponent from 'app/logic/pizza/AddToCartPizzaComponent';
 
 const {Meta} = Card;
 
@@ -42,6 +43,9 @@ function PizzaItemDescription({pizza}: { pizza: Pizza }) {
             </div>
             <div className='pizza-item-description-description'>
                 {pizza.description}
+            </div>
+            <div>
+                <AddToCartPizzaComponent id={pizza.id}/>
             </div>
         </div>
     )

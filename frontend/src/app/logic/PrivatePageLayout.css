@@ -8,9 +8,10 @@
     color: red;
 }
 
-.pizza-orders-link {
+.pizza-orders-link, .pizza-cart-link {
     margin-left: 10px;
 }
+
 
 .page-links {
     display: flex;

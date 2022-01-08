@@ -1,0 +1,14 @@
+.cart-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pizza-cart > div {
+    margin-top: 16px;
+}
+
+.create-order {
+    margin-top: 24px;
+}

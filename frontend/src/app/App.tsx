@@ -5,21 +5,26 @@ import LoginPage from 'app/logic/login/LoginPage';
 import PizzaOrdersPage from 'app/logic/PizzaOrdersPage';
 import AuthProvider from 'app/AuthProvider';
 import PrivatePageLayout from 'app/logic/PrivatePageLayout';
-import './App.css';
 import PizzaPage from 'app/logic/pizza/PizzaPage';
+import CartPage from 'app/logic/cart/CartPage';
+import CartProvider from 'app/logic/CartProvider';
+import './App.css';
 
 function App() {
     return (
-        <AuthProvider>
-            <Routes>
-                <Route path='login' element={<LoginPage/>}/>
-                <Route path='pizza' element={<PrivatePageLayout/>}>
-                    <Route index element={<PizzaPage/>}/>
-                    <Route path='orders' element={<PizzaOrdersPage/>}/>
-                </Route>
-                <Route path='*' element={<Navigate to='/login'/>}/>
-            </Routes>
-        </AuthProvider>
+        <CartProvider>
+            <AuthProvider>
+                <Routes>
+                    <Route path='login' element={<LoginPage/>}/>
+                    <Route path='pizza' element={<PrivatePageLayout/>}>
+                        <Route index element={<PizzaPage/>}/>
+                        <Route path='orders' element={<PizzaOrdersPage/>}/>
+                        <Route path='cart' element={<CartPage/>}/>
+                    </Route>
+                    <Route path='*' element={<Navigate to='/login'/>}/>
+                </Routes>
+            </AuthProvider>
+        </CartProvider>
     );
 }
 
