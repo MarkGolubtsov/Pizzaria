@@ -13,6 +13,11 @@ export default class HttpClient {
         return response.data;
     };
 
+    public static async executePutRequest<T = any>(url: string, body: any, params: any = null): Promise<T> {
+        const response = await axios.put(url, body, HttpClient.getRequestConfig({params}));
+        return response.data;
+    };
+
     public static async executeDeleteRequest<T = any>(url: string): Promise<T> {
         const response = await axios.delete(url, HttpClient.getRequestConfig({}));
 

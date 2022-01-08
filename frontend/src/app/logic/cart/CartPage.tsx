@@ -1,14 +1,16 @@
 import useCart from 'app/logic/useCart';
 import React, {useEffect, useState} from 'react';
 import {PizzaService} from 'app/service/PizzaService';
-import {Button, message, Spin} from 'antd';
+import {Button, Input, message, Spin} from 'antd';
 import CartItem from 'app/logic/cart/CartItem';
 import 'app/logic/cart/CartPage.css';
 import {PizzaOrder} from 'app/model/PizzaOrder';
+import {OrderService} from 'app/service/OrderService';
 
 export default function CartPage() {
-    const {cart, isInCart, remove} = useCart();
+    const {cart, isInCart, remove, clear} = useCart();
     const [pizzaOrders, setPizzaOrders] = useState<PizzaOrder[]>([]);
+    const [contact, setContact] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -40,16 +42,21 @@ export default function CartPage() {
 
             }
             {
-                !loading && !pizzaOrders.length &&
-                <div>Cart is empty</div>
+                !loading && <>
+                    {!pizzaOrders.length && <div>Cart is empty</div>}
+                    <div className='contact-input'>
+                        <div className='contact-input__label'>Contact:</div>
+                        <Input value={contact} onChange={(e) => setContact(e.target.value)}/>
+                    </div>
+                    {!!pizzaOrders.length && !!contact &&
+                        <div className='create-order'>
+                            <Button onClick={handleCreateOrder}>
+                                Create order
+                            </Button>
+                        </div>}
+                </>
             }
             {
-                !loading && !!pizzaOrders.length &&
-                <div className='create-order'>
-                    <Button onClick={handleCreateOrder}>
-                        Create order
-                    </Button>
-                </div>
             }
 
         </div>
@@ -75,6 +82,8 @@ export default function CartPage() {
     }
 
     function handleCreateOrder() {
-        console.log(pizzaOrders);
+        OrderService.createOrder(pizzaOrders, contact).then(() => {
+            clear();
+        });
     }
 }

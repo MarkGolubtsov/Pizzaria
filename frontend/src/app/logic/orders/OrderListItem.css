@@ -1,0 +1,10 @@
+
+.order-list-item {
+
+}
+
+.order-list-item__pizza {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}

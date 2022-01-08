@@ -6,12 +6,15 @@ export const CartContext = createContext<{
     remove: (id: string) => void,
     add: (id: string) => void,
     isInCart: (id: string) => boolean,
+    clear: () => void,
 }>({
         cart: [],
         remove: () => {
         },
         isInCart: () => false,
         add: () => {
+        },
+        clear: () => {
         }
     }
 );
@@ -31,7 +34,8 @@ export default function CartProvider({children}: { children: JSX.Element | JSX.E
             cart: cart,
             remove: removeCartItem,
             add: addToCart,
-            isInCart: isInCart
+            isInCart: isInCart,
+            clear: clear
         }}>
             {children}
         </CartContext.Provider>
@@ -54,5 +58,9 @@ export default function CartProvider({children}: { children: JSX.Element | JSX.E
 
     function isInCart(pizzaId: string) {
         return !!cart.find((id) => pizzaId === id);
+    }
+
+    function clear() {
+        updateCart([]);
     }
 }

@@ -1,15 +1,17 @@
-import {UserEmail} from 'app/model/UserEmail';
+import {PizzaOrdersFull} from 'app/model/PizzaOrdersFull';
 
 export class Order {
     id: string = '';
 
     comment: string = '';
 
-    userDTO: UserEmail = new UserEmail();
+    contact: string = '';
 
-    data: string = '';
+    pizzaOrders: PizzaOrdersFull[] = []
 
-    isClosed: boolean = false;
+    date: string = '';
+
+    closed: boolean = false;
 
     amount: number = 0;
 }

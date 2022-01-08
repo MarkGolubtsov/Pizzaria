@@ -12,3 +12,15 @@
 .create-order {
     margin-top: 24px;
 }
+
+.contact-input {
+    margin-top: 20px;
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact-input__label {
+    margin-right: 10px;
+}

@@ -1,0 +1,18 @@
+
+.pizza-orders-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pizza-order-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+.order-list-item {
+    margin: 24px 0;
+}
