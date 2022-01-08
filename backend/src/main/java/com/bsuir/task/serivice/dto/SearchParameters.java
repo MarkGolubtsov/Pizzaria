@@ -4,7 +4,7 @@ public class SearchParameters {
 
     private int page = 0;
 
-    private int pageSize = 10;
+    private int pageSize = 100;
 
     private String text;
 

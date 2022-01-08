@@ -1,7 +1,8 @@
 package com.bsuir.task.repository.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "base_order")
@@ -11,15 +12,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "contact")
+    private String contact;
 
     @Column(name = "comment")
     private String comment;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "isClosed")
     private Boolean isClosed;
@@ -27,21 +27,24 @@ public class Order {
     @Column(name = "amount")
     private Double amount;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "baseOrder")
+    private Set<PizzaOrder> pizzaOrders;
+
+    public Set<PizzaOrder> getPizzaOrders() {
+        return pizzaOrders;
+    }
+
+    public Order setPizzaOrders(Set<PizzaOrder> pizzaOrders) {
+        this.pizzaOrders = pizzaOrders;
+        return this;
+    }
+
     public long getId() {
         return id;
     }
 
     public Order setId(long id) {
         this.id = id;
-        return this;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Order setUser(User user) {
-        this.user = user;
         return this;
     }
 
@@ -54,11 +57,11 @@ public class Order {
         return this;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public Order setDate(Date date) {
+    public Order setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }
@@ -78,6 +81,15 @@ public class Order {
 
     public Order setAmount(Double amount) {
         this.amount = amount;
+        return this;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public Order setContact(String contact) {
+        this.contact = contact;
         return this;
     }
 }

@@ -1,20 +1,9 @@
 package com.bsuir.task.serivice.dto;
 
 public class PizzaSearchParameters extends SearchParameters {
-    String text;
-    String sortProperty = "id";
-    String sortType = "asc";
+    public String sortProperty = "id";
 
-    @Override
-    public String getText() {
-        return text;
-    }
-
-    @Override
-    public PizzaSearchParameters setText(String text) {
-        this.text = text;
-        return this;
-    }
+    public String sortType = "asc";
 
     public String getSortProperty() {
         return sortProperty;

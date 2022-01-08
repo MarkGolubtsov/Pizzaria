@@ -3,37 +3,38 @@ package com.bsuir.task.repository.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order_pizza")
-public class OrderPizza {
+@Table(name = "pizza_order")
+public class PizzaOrder {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Id
-    private Long id;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
-
-    public OrderPizza setId(Long id) {
-        this.id = id;
-        return this;
-    }
+    private Order baseOrder;
 
     public Long getId() {
         return id;
+    }
+
+    public PizzaOrder setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public OrderPizza setQuantity(Integer quantity) {
+    public PizzaOrder setQuantity(Integer quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -42,17 +43,17 @@ public class OrderPizza {
         return pizza;
     }
 
-    public OrderPizza setPizza(Pizza pizza) {
+    public PizzaOrder setPizza(Pizza pizza) {
         this.pizza = pizza;
         return this;
     }
 
     public Order getOrder() {
-        return order;
+        return baseOrder;
     }
 
-    public OrderPizza setOrder(Order order) {
-        this.order = order;
+    public PizzaOrder setOrder(Order order) {
+        this.baseOrder = order;
         return this;
     }
 }
