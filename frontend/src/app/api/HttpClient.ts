@@ -1,7 +1,20 @@
 import axios, {AxiosRequestConfig} from 'axios';
 import {constants} from 'app/constants';
+import {ApiError} from 'app/api/ApiError';
 
 const backendUrl = constants.SERVER_URL;
+
+export function axiosErrorInterceptor(error: any) {
+    const {data} = error.response;
+
+    if (data?.errors?.length) {
+        return Promise.reject(new ApiError(data.errors.join('. ')))
+    }
+
+    return Promise.reject(new ApiError());
+}
+
+axios.interceptors.response.use(response => response, axiosErrorInterceptor);
 
 /**
  * Class for sending requests to server.
