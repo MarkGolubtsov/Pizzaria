@@ -33,8 +33,11 @@ export default class HttpClient {
 
     public static async executeDeleteRequest<T = any>(url: string): Promise<T> {
         const response = await axios.delete(url, HttpClient.getRequestConfig({}));
-
+        if (response?.data) {
+            response.data = {}
+        }
         return response.data;
+
     };
 
     public static async executeGetRequest<T = any>(url: string, params: any = null): Promise<T> {

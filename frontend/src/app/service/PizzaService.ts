@@ -8,4 +8,8 @@ export class PizzaService {
     static getAllPizza(text: string) {
         return HttpClient.executeGetRequest<ServerListResponse<Pizza>>(`${PIZZA_URL}?text=${text}`);
     }
+
+    static deletePizza(id: string) {
+        return HttpClient.executeDeleteRequest<ServerListResponse<Pizza>>(`${PIZZA_URL}/${id}`);
+    }
 }

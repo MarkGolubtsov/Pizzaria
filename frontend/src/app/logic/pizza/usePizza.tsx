@@ -16,7 +16,14 @@ export default function usePizza() {
     }, [params.text]);
 
 
+    function loadPizza() {
+        setLoading(true);
+        PizzaService.getAllPizza(params.text).then((response) => {
+            setPizza(response.content);
+        }).finally(() => setLoading(false));
+    }
     return {
+        loadPizza,
         pizza,
         loading,
         searchParams: params

@@ -3,9 +3,10 @@ import usePizza from 'app/logic/pizza/usePizza';
 import {Input, Spin} from 'antd';
 import PizzaItemView from 'app/logic/pizza/PizzaItemView';
 import 'app/logic/pizza/PizzaPage.css';
+import {PizzaService} from 'app/service/PizzaService';
 
 export default function PizzaPage() {
-    const {pizza, loading, searchParams: {text, handleChangeText}} = usePizza();
+    const {pizza, loading, loadPizza, searchParams: {text, handleChangeText}} = usePizza();
 
     return (
         <div className='pizza-page'>
@@ -16,7 +17,8 @@ export default function PizzaPage() {
             </div>
             {loading ? <Spin/> :
                 <div className='pizza-list'>
-                    {pizza.map((item) => <PizzaItemView key={item.id} pizza={item}/>)}
+                    {pizza.map((item) => <PizzaItemView handleDelete={getDeletePizzaHandler(item.id)} key={item.id}
+                                                        pizza={item}/>)}
                 </div>
             }
 
@@ -31,5 +33,11 @@ export default function PizzaPage() {
 
     function handleChangeSearchText(event: any) {
         handleChangeText(event.target.value);
+    }
+
+    function getDeletePizzaHandler(id: string) {
+        return () => {
+            PizzaService.deletePizza(id).then(() => loadPizza())
+        }
     }
 }

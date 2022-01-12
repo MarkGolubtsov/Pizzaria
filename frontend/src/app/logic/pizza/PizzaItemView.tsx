@@ -1,5 +1,5 @@
 import {Pizza} from 'app/model/Pizza';
-import {Card} from 'antd';
+import {Button, Card} from 'antd';
 import img from 'app/assets/pizza.png';
 import PizzaPrice from 'app/components/PizzaPrice';
 import 'app/logic/pizza/PizzaItemView.css';
@@ -8,7 +8,7 @@ import AddToCartPizzaComponent from 'app/logic/pizza/AddToCartPizzaComponent';
 const {Meta} = Card;
 
 //todo add hide text when description is too long.
-export default function PizzaItemView({pizza}: { pizza: Pizza }) {
+export default function PizzaItemView({pizza, handleDelete}: { pizza: Pizza, handleDelete: () => void; }) {
 
     const cover = <img alt={`${pizza.name}`} src={img}/>;
 
@@ -20,7 +20,7 @@ export default function PizzaItemView({pizza}: { pizza: Pizza }) {
                 cover={cover}
             >
                 <Meta title={<PizzaItemTitle name={pizza.name} price={pizza.price}/>}
-                      description={<PizzaItemDescription pizza={pizza}/>}/>
+                      description={<PizzaItemDescription handleDelete={handleDelete} pizza={pizza}/>}/>
             </Card>
         </div>
     )
@@ -35,7 +35,7 @@ function PizzaItemTitle({name, price}: { name: string, price: number }) {
     )
 }
 
-function PizzaItemDescription({pizza}: { pizza: Pizza }) {
+function PizzaItemDescription({pizza, handleDelete}: { pizza: Pizza, handleDelete: () => void; }) {
     return (
         <div className='pizza-item-description'>
             <div className='pizza-item-description-weight'>
@@ -46,6 +46,13 @@ function PizzaItemDescription({pizza}: { pizza: Pizza }) {
             </div>
             <div>
                 <AddToCartPizzaComponent id={pizza.id}/>
+            </div>
+            <div>
+                <Button danger style={{
+                    marginTop: 20
+                }} onClick={handleDelete}>
+                    Delete pizza
+                </Button>
             </div>
         </div>
     )
