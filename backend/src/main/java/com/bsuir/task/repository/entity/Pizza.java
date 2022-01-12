@@ -22,6 +22,18 @@ public class Pizza {
     @Column(name = "weight")
     private Double weight;
 
+    @Column(name = "visible")
+    private boolean visible;
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public Pizza setVisible(boolean visible) {
+        this.visible = visible;
+        return this;
+    }
+
     public long getId() {
         return id;
     }

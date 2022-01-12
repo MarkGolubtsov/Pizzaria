@@ -47,7 +47,7 @@ public class PizzaController {
         return service.update(pizzaDTO);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{pizzaId}")
     public ResponseEntity<Long> delete(@PathVariable Long pizzaId) {
         service.delete(pizzaId);
         return new ResponseEntity<>(pizzaId, HttpStatus.OK);

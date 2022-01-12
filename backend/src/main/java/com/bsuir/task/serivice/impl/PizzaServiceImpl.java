@@ -10,6 +10,7 @@ import com.bsuir.task.serivice.converter.PizzaConverter;
 import com.bsuir.task.serivice.dto.PizzaDTO;
 import com.bsuir.task.serivice.dto.PizzaSearchParameters;
 import com.bsuir.task.serivice.dto.SearchParameters;
+import com.bsuir.task.serivice.exception.NotFoundEntityException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -62,7 +63,9 @@ public class PizzaServiceImpl implements PizzaService {
 
     @Override
     public void delete(long id) {
-        repository.deleteById(id);
+        Pizza pizza = repository.findById(id).orElseThrow(()-> new NotFoundEntityException("Pizza not found."));
+        pizza.setVisible(false);
+        repository.save(pizza);
     }
 
     @Override
@@ -83,8 +86,8 @@ public class PizzaServiceImpl implements PizzaService {
     }
 
     private Specification<Pizza> builtSpecification(PizzaSearchParameters parameters) {
-        Specification<Pizza> specification = (root, query, criteriaBuilder) -> criteriaBuilder.isNotNull(root.get(
-            "id"
+        Specification<Pizza> specification = (root, query, criteriaBuilder) -> criteriaBuilder.isTrue(root.get(
+            "visible"
         ));
 
         if (!StringUtils.isEmpty(parameters.getText())) {
