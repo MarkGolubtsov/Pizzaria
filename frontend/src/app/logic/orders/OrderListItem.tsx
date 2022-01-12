@@ -23,7 +23,7 @@ export default function OrderListItem({order, closeOrder}: OrderListItemProps) {
             </div>
             {
                 order.pizzaOrders.map((value) => {
-                    return <div className='order-list__pizza-data'>
+                    return <div key={value.pizza.id} className='order-list__pizza-data'>
                         <span>{`Pizza: ${value.pizza.name}, Quantuty: ${value.quantity}`}</span>
                     </div>
                 })

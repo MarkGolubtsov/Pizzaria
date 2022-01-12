@@ -14,9 +14,15 @@ export default function PizzaOrdersPage() {
                 <div className='pizza-order-list'>
                     {orders.map((item) =>
                         <OrderListItem
-                            closeOrder={getCloseOrder(item.id)}
                             key={item.id}
+                            closeOrder={getCloseOrder(item.id)}
                             order={item}/>)}
+                </div>
+            }
+            {
+                !loading && !orders.length &&
+                <div className='pizza-order-list'>
+                    Orders not found.
                 </div>
             }
         </div>

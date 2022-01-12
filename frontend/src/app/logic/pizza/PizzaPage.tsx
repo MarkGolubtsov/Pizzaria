@@ -19,6 +19,13 @@ export default function PizzaPage() {
                     {pizza.map((item) => <PizzaItemView key={item.id} pizza={item}/>)}
                 </div>
             }
+
+            {
+                !loading && !pizza.length &&
+                <div className='pizza-list'>
+                    Pizza not found.
+                </div>
+            }
         </div>
     )
 
