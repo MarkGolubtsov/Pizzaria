@@ -11,6 +11,7 @@ public class PizzaConverter {
     public static Pizza fromDTO(PizzaDTO pizzaDTO) {
         Pizza pizza = new Pizza();
         pizza.setId(pizzaDTO.getId())
+                .setVisible(true)
                 .setName(pizzaDTO.getName())
                 .setDescription(pizzaDTO.getDescription())
                 .setPrice(pizzaDTO.getPrice())

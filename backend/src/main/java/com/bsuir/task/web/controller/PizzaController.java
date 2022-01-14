@@ -32,7 +32,7 @@ public class PizzaController {
         return service.readAll(paramsSearch);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<PizzaDTO> create(@RequestBody PizzaDTO newPizzaDTO) {
         PizzaDTO pizza = service.create(newPizzaDTO);
         if (pizza == null) {
