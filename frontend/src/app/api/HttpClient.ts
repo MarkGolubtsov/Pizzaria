@@ -23,11 +23,17 @@ export default class HttpClient {
 
     public static async executePostRequest<T = any>(url: string, body: any, params: any = null): Promise<T> {
         const response = await axios.post(url, body, HttpClient.getRequestConfig({params}));
+        if (response?.data) {
+            response.data = {}
+        }
         return response.data;
     };
 
     public static async executePutRequest<T = any>(url: string, body: any, params: any = null): Promise<T> {
         const response = await axios.put(url, body, HttpClient.getRequestConfig({params}));
+        if (response?.data) {
+            response.data = {}
+        }
         return response.data;
     };
 
@@ -42,6 +48,9 @@ export default class HttpClient {
 
     public static async executeGetRequest<T = any>(url: string, params: any = null): Promise<T> {
         const response = await axios.get(url, HttpClient.getRequestConfig({params}));
+        if (response?.data) {
+            response.data = {}
+        }
         return response.data;
     };
 
