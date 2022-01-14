@@ -48,7 +48,7 @@ export default class HttpClient {
 
     public static async executeGetRequest<T = any>(url: string, params: any = null): Promise<T> {
         const response = await axios.get(url, HttpClient.getRequestConfig({params}));
-        if (response?.data) {
+        if (!response?.data) {
             response.data = {}
         }
         return response.data;
