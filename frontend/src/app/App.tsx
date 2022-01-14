@@ -11,6 +11,7 @@ import CartProvider from 'app/logic/CartProvider';
 import {message} from 'antd';
 import './App.css';
 import {ApiError} from 'app/api/ApiError';
+import CreatePizzaPage from 'app/logic/create-pizza/CreatePizzaPage';
 
 function App() {
     useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
                         <Route index element={<PizzaPage/>}/>
                         <Route path='orders' element={<PizzaOrdersPage/>}/>
                         <Route path='cart' element={<CartPage/>}/>
+                        <Route path='create' element={<CreatePizzaPage/>}/>
                     </Route>
                     <Route path='*' element={<Navigate to='/login'/>}/>
                 </Routes>

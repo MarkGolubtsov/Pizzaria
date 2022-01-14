@@ -12,4 +12,8 @@ export class PizzaService {
     static deletePizza(id: string) {
         return HttpClient.executeDeleteRequest<ServerListResponse<Pizza>>(`${PIZZA_URL}/${id}`);
     }
+
+    static createPizza(pizza: Pizza) {
+        return HttpClient.executePostRequest(`${PIZZA_URL}`, {...pizza});
+    }
 }

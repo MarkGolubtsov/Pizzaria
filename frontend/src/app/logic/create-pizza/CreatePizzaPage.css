@@ -1,0 +1,10 @@
+
+.create-pizza-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-pizza-form {
+    max-width: 500px;
+}

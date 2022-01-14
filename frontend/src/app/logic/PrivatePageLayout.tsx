@@ -13,6 +13,8 @@ export default function PrivatePageLayout() {
     const isPizzaActive = pathname === '/pizza';
     const isOrdersActive = pathname === '/pizza/orders';
 
+    const isCreateActive = pathname === '/pizza/create';
+
     const isCartActive = pathname === '/pizza/cart';
 
     const getCssHeaderActiveClass = (act: boolean) => act ? 'header-link-active' : '';
@@ -31,6 +33,10 @@ export default function PrivatePageLayout() {
                     <div onClick={navigateToCart}
                          className={`header-link pizza-cart-link ${getCssHeaderActiveClass(isCartActive)}`}>
                         Cart
+                    </div>
+                    <div onClick={navigateToCreatePizza}
+                         className={`header-link pizza-create-link ${getCssHeaderActiveClass(isCreateActive)}`}>
+                        Create pizza
                     </div>
                 </div>
                 <Button danger type='primary' onClick={logout}>
@@ -53,5 +59,9 @@ export default function PrivatePageLayout() {
 
     function navigateToCart() {
         navigate('/pizza/cart')
+    }
+
+    function navigateToCreatePizza() {
+        navigate('/pizza/create')
     }
 }
