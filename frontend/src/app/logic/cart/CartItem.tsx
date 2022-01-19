@@ -18,7 +18,7 @@ export default function CartItem({pizzaOrder, setQuantity, removeFromCart}: Cart
             </div>
             <div className='cart-item-remove'>
                 <Button danger onClick={removeFromCart}>
-                    Remove from cart
+                    Удалить из корзины
                 </Button>
             </div>
         </div>

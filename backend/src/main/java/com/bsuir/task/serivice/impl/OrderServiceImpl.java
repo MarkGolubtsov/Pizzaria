@@ -20,7 +20,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -30,9 +29,9 @@ import java.util.stream.Collectors;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private final String NOT_FOUND_MESSAGE = "Not found order.";
+    private final String NOT_FOUND_MESSAGE = "Заказ не найден.";
 
-    private final String NOT_FOUND_PIZZA_MESSAGE = "Not found pizza for order.";
+    private final String NOT_FOUND_PIZZA_MESSAGE = "Пицца для заказа не найдена";
 
     private final OrderRepository repository;
 
@@ -81,12 +80,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO create(OrderDTO entity) {
-        throw new NotImplementedException();
+        throw new RuntimeException();
     }
 
     @Override
     public Page<OrderDTO> readAll(SearchParameters parameters) {
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("Не реализовано");
     }
 
     @Override

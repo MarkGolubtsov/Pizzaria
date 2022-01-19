@@ -43,15 +43,15 @@ export default function CartPage() {
             }
             {
                 !loading && <>
-                    {!pizzaOrders.length && <div>Cart is empty</div>}
+                    {!pizzaOrders.length && <div>Корзина пуста</div>}
                     <div className='contact-input'>
-                        <div className='contact-input__label'>Contact:</div>
+                        <div className='contact-input__label'>Контакт:</div>
                         <Input value={contact} onChange={(e) => setContact(e.target.value)}/>
                     </div>
                     {!!pizzaOrders.length && !!contact &&
                         <div className='create-order'>
                             <Button onClick={handleCreateOrder}>
-                                Create order
+                                Создать заказ
                             </Button>
                         </div>}
                 </>
@@ -65,7 +65,7 @@ export default function CartPage() {
     function getHandleRemove(id: string) {
         return () => {
             remove(id);
-            message.success('Pizza removed from Cart.')
+            message.success('Пицца удалена из заказа')
         }
     }
 

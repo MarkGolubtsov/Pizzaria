@@ -16,23 +16,23 @@ export default function CreatePizzaPage() {
             }}>
                 <Form.Item style={{
                     width: 500
-                }} name='name' label='Name' rules={[{required: true, message: 'Provide Name'}]}>
+                }} name='name' label='Имя' rules={[{required: true, message: 'Предоставьте Имя'}]}>
                     <Input/>
                 </Form.Item>
                 <Form.Item style={{
                     width: 500
-                }} name='description' label='Description'
-                           rules={[{required: true, message: 'Provide Description'}]}>
+                }} name='description' label='Описание'
+                           rules={[{required: true, message: 'Предоставьте описание'}]}>
                     <TextArea/>
                 </Form.Item>
                 <Form.Item style={{
                     width: 500
-                }} name='price' label='Price' rules={[{required: true, message: 'Provide Price'}]}>
+                }} name='price' label='Цена' rules={[{required: true, message: 'Предоставьте цену'}]}>
                     <InputNumber min={1} max={10000}  style={{
                         width: 500
                     }}/>
                 </Form.Item>
-                <Form.Item name='weight' label='Weight' rules={[{required: true, message: 'Provide Weight'}]} style={{
+                <Form.Item name='weight' label='Вес' rules={[{required: true, message: 'Предоставьте вес'}]} style={{
                     width: 500
                 }}>
                     <InputNumber min={1} max={10000}  style={{
@@ -41,7 +41,7 @@ export default function CreatePizzaPage() {
                 </Form.Item>
                 <Form.Item>
                     <Button htmlType='submit'>
-                        Create Pizza
+                        Создать пиццу
                     </Button>
                 </Form.Item>
             </AppForm>
@@ -51,7 +51,7 @@ export default function CreatePizzaPage() {
     function handleCreate(values: Pizza) {
         PizzaService.createPizza(values)
             .then(() => {
-                message.success('Pizza created.')
+                message.success('Пицца создана')
             })
             .finally(() => {
                 form.resetFields();

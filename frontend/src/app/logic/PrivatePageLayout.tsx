@@ -24,23 +24,23 @@ export default function PrivatePageLayout() {
                 <div className='page-links'>
                     <div onClick={navigateToPizza}
                          className={`header-link pizza-link ${getCssHeaderActiveClass(isPizzaActive)}`}>
-                        Pizza
+                        Меню
                     </div>
                     <div onClick={navigateToOrders}
                          className={`header-link pizza-orders-link ${getCssHeaderActiveClass(isOrdersActive)}`}>
-                        Orders
+                        Заказы
                     </div>
                     <div onClick={navigateToCart}
                          className={`header-link pizza-cart-link ${getCssHeaderActiveClass(isCartActive)}`}>
-                        Cart
+                        Корзина
                     </div>
                     <div onClick={navigateToCreatePizza}
                          className={`header-link pizza-create-link ${getCssHeaderActiveClass(isCreateActive)}`}>
-                        Create pizza
+                        Создать пиццу
                     </div>
                 </div>
                 <Button danger type='primary' onClick={logout}>
-                    Logout
+                    Выйти
                 </Button>
             </Header>
             <Content>

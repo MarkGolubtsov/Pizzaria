@@ -11,7 +11,7 @@ export default function PizzaPage() {
     return (
         <div className='pizza-page'>
             <div>
-                <Input allowClear title='Search:' className='pizza-search' placeholder='Text search' type='text'
+                <Input allowClear title='Поиск:' className='pizza-search' placeholder='Поиск' type='text'
                        value={text}
                        onChange={handleChangeSearchText}/>
             </div>
@@ -25,7 +25,7 @@ export default function PizzaPage() {
             {
                 !loading && !pizza.length &&
                 <div className='pizza-list'>
-                    Pizza not found.
+                    Пиццы не найдены.
                 </div>
             }
         </div>

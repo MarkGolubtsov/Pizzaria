@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static final String NOT_FOUND = "User not found.";
+    private static final String NOT_FOUND = "Пользователь не найден.";
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {

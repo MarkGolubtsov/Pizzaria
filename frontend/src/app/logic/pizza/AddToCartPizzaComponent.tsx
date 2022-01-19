@@ -14,23 +14,23 @@ export default function AddToCartPizzaComponent({id}: AddToCartPizzaComponentPro
         <div className='add-to-cart'>
             {!isPizzaInCart &&
                 <Button onClick={addToCartPizza}>
-                    Add to cart
+                    Добавить в корзину
                 </Button>}
 
             {isPizzaInCart &&
                 <Button danger onClick={removeFromCart}>
-                    Remove from cart
+                    Удалить из корзины
                 </Button>}
         </div>
     )
 
     function addToCartPizza() {
         add(id);
-        message.success('Pizza added to Cart.');
+        message.success('Пицца добавлена в корзину');
     }
 
     function removeFromCart() {
         remove(id);
-        message.success('Pizza removed from Cart.');
+        message.success('Пицца удалена из корзины');
     }
 }

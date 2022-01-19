@@ -1,9 +1,9 @@
 INSERT INTO pizza ("name", "description", "price", "weight", "visible")
-VALUES ('Pepperoni Pizza',
-        'It is no secret that Pepperoni pizza is created for true thrill-seekers. The main ingredient, pepperoni, gives the dish a refined, tart taste. Translated from Italian, pepperoni means "capsicum".',
+VALUES ('Пепперони пицца',
+        'Ни для кого не секрет, что пицца Пепперони создана для истинных любителей острых ощущений. Основной ингредиент, пепперони, придает блюду изысканный, терпкий вкус.',
         20.50, 423, true),
-       ('Greek Pizza',
-        'Greek pizza Ingredients: garlic sauce, mozzarella cheese, tomato, feta cheese, chicken fillet, spinach', 10.55,
+       ('Греческая пицца',
+        'Ингредиенты для греческой пиццы: чесночный соус, сыр моцарелла, помидор, сыр фета, куриное филе, шпинат', 10.55,
         323, true)
 ;
 

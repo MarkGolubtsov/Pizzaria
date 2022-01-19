@@ -39,7 +39,7 @@ function PizzaItemDescription({pizza, handleDelete}: { pizza: Pizza, handleDelet
     return (
         <div className='pizza-item-description'>
             <div className='pizza-item-description-weight'>
-                <span className='pizza-item-description-weight-title'>Weight:</span> {pizza.weight}
+                <span className='pizza-item-description-weight-title'>Вес:</span> {pizza.weight}
             </div>
             <div className='pizza-item-description-description'>
                 {pizza.description}
@@ -51,7 +51,7 @@ function PizzaItemDescription({pizza, handleDelete}: { pizza: Pizza, handleDelet
                 <Button danger style={{
                     marginTop: 20
                 }} onClick={handleDelete}>
-                    Delete pizza
+                    Удалить пиццу
                 </Button>
             </div>
         </div>

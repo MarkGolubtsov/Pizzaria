@@ -26,15 +26,15 @@ export default function LoginPage() {
             <AppForm onFinish={handleSubmit} initialValues={initialValues}
                      className='login-form'
                      layout='vertical' name='login-form'>
-                <Form.Item name='login' label='Email' rules={[{required: true, message: 'Login is required'}]}>
-                    <Input type='text' placeholder='Email'/>
+                <Form.Item name='login' label='Электронная почта' rules={[{required: true, message: 'Электронная почта обязательна'}]}>
+                    <Input type='text' placeholder='Электронная почта'/>
                 </Form.Item>
-                <Form.Item name='password' label='Password' rules={[{required: true, message: 'Password is required'}]}>
-                    <Input.Password placeholder='Password'/>
+                <Form.Item name='password' label='Пароль' rules={[{required: true, message: 'Пароль обязателен'}]}>
+                    <Input.Password placeholder='Пароль'/>
                 </Form.Item>
                 <Form.Item>
                     <Button type='primary' htmlType='submit'>
-                        Log in
+                        Логин
                     </Button>
                 </Form.Item>
             </AppForm>

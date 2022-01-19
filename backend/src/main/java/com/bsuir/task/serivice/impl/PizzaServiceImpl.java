@@ -39,7 +39,7 @@ public class PizzaServiceImpl implements PizzaService {
 
     @Override
     public Page<PizzaDTO> readAll(SearchParameters parameters) {
-       throw new RuntimeException("not implemented");
+       throw new RuntimeException("Не реализовано");
     }
 
     @Override
@@ -57,13 +57,13 @@ public class PizzaServiceImpl implements PizzaService {
         if (optionalPizza.isPresent()) {
             return PizzaConverter.toDTO(optionalPizza.get());
         } else {
-            throw new RuntimeException("not found");
+            throw new RuntimeException("Не найдено");
         }
     }
 
     @Override
     public void delete(long id) {
-        Pizza pizza = repository.findById(id).orElseThrow(()-> new NotFoundEntityException("Pizza not found."));
+        Pizza pizza = repository.findById(id).orElseThrow(()-> new NotFoundEntityException("Пицца не найдена"));
         pizza.setVisible(false);
         repository.save(pizza);
     }

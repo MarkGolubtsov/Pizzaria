@@ -22,7 +22,7 @@ export default function PizzaOrdersPage() {
             {
                 !loading && !orders.length &&
                 <div className='pizza-order-list'>
-                    Orders not found.
+                    Заказы не найдены.
                 </div>
             }
         </div>
